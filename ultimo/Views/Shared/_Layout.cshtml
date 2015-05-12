@@ -1,0 +1,167 @@
+﻿@using ultimo.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+
+    <link href="~/Content/sb-admin.css" rel="stylesheet" /> <!-- Morris Charts CSS -->
+    
+    
+<link href="~/Content/plugins/morris.css" rel="stylesheet" /><!-- Custom Fonts -->
+    
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
+    
+    <!-- Custom styles for this template -->
+
+    
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./Dashboard Template for Bootstrap_files/ie-emulation-modes-warning.js"></script>
+    <style type="text/css">
+        .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+            height:200px;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Index.html">Trapani SRL</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <!--Lista desordenada de elementos que son menus -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!--Elemento de la lista que se despliega por la clase dropdown-->
+                    <li class="dropdown">
+                        <!--Icono de la campana y la flechita-->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                        <!--Lista desordenada de elementos que se desplegaran-->
+                        <ul class="dropdown-menu alert-dropdown">
+                           @{
+                               
+                               Contexto db = new Contexto();
+                                   var filas = db.PartesSet.Where(x => x.FechaCambioEstimado <= DateTime.Today);
+                               
+                                   foreach (var fila in filas)
+                                   {//recorre las filas que han pasado o estan en su fecha de vencimiento y las pone como un elemento de la lista tiene un a para poder poner una redireccion al elemento ese y el span es un tipo de etiqueta que con la clase que tiene se marca en rojo
+                                       //con fila.descripcion y fila.fecha se impimeesos datos de cada fila 
+                                        <li><a href="http://localhost:12247/Partes/Details/@fila.Id"><span class="label label-warning">@fila.NumSerie - @fila.FechaCambioEstimado</span></a></li>
+                                   }
+                                
+                           }
+                            @*<li>
+                                <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                            </li>
+                            <li>
+                                <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                            </li>*@
+                            
+                        </ul>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar" style="font-family:cursive">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Acerca De", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                  
+                        <li>@Html.ActionLink("Salida", "Index", "ReparacionEgresoes")</li>
+                        <li>@Html.ActionLink("DetalleReparacion", "Index", "DetalleReparacions")</li>
+
+                        <li>@Html.ActionLink("Ingreso", "Index", "ReparacionIngresoes")</li>
+                        <li>@Html.ActionLink("Responsable", "Index", "Responsables")</li>
+                        <li>@Html.ActionLink("Costos", "Index", "CostosReparacions")</li>
+                        <li>@Html.ActionLink("Vehiculo", "Index", "Vehiculoes")</li>
+                        <li>@Html.ActionLink("Marca", "Index", "Marcas")</li>
+                        <li>@Html.ActionLink("Modelo", "Index", "Modeloes")</li>
+                        <li>@Html.ActionLink("Partes/Piezas", "Index", "Partes")</li>
+
+                        <li>@Html.ActionLink("Defectos", "Index", "Defectoes")</li>
+                       
+                        <li>@Html.ActionLink("Detalle Vehiculo", "Index", "DetalleVehiculoes")</li>
+                        <li>@Html.ActionLink("Stock Partes", "Index", "StockPartes")</li>
+                    
+                </ul>
+
+            </div>
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                @RenderBody()
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                
+                        <div class="row">
+                            @*<div class="col-sm-4 col-sm-offset-8 col-md-4 col-md-offset-8">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Descripcion</th>
+                                            <th>Fecha Estimada</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var fila in filas)
+                                        {
+                                            <tr>
+                                                <td>
+                                                <div class="bs-callout bs-callout-danger" id="callout-xref-input-group">
+                                                    <h4 id="input-groups">@fila.Descripcion
+                                                    @fila.FechaEstimadaCambio</h4>
+                                                    <p>@fila.Descripcion
+                                                    @fila.FechaEstimadaCambio</p>
+                                                </div>
+
+                            </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>*@
+                        </div>
+                    
+                
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year </p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
