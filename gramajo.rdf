@@ -15,7 +15,6 @@
 	foaf:homepage <http://gramajoguadalupe.com>;
 	foaf:based_near <http://sws.geonames.org/3871336/>;
 	foaf:img <https://lh4.googleusercontent.com/-8fGDJSi4LJg/Vrok1UpkUAI/AAAAAAAAAOY/Jqk9FjE2KFYqbCsjeyRtVxJ44bS-J0zrwCL0B/s577-no/IMG_1785.JPG>;
-	foaf:knows <http://ime.usp.eguetti/perfil.ttl#yo> , <http://evenroruro.com/perfil.ttl#yo> , < http://aidanhogan.com/perfil.ttl#yo > ;
 	foaf:interest wikidata:Q199657 , wikidata:Q31920, wikidata:Q1860;
 	ex:likesMovie wikidata:Q128518 , wikidata:Q218235, wikidata:Q106182.
 	
