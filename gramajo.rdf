@@ -1,0 +1,24 @@
+@base <http://gramajoguadalupe.org/perfil.ttl> .
+
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://ex.org/movie#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+
+<#yo> rdf:type foaf:Person;
+	foaf:name "Guadalupe Gramajo";
+	foaf:firstName "Guadalupe";
+	foaf:surname "Gramajo";
+	foaf:birthday "06-90";
+	foaf:age 26;
+	foaf:gender "femenino"@es;
+	foaf:homepage <http://gramajoguadalupe.com>;
+	foaf:based_near <http://sws.geonames.org/3871336/>;
+	foaf:img <https://lh4.googleusercontent.com/-8fGDJSi4LJg/Vrok1UpkUAI/AAAAAAAAAOY/Jqk9FjE2KFYqbCsjeyRtVxJ44bS-J0zrwCL0B/s577-no/IMG_1785.JPG>;
+	foaf:knows <http://ime.usp.eguetti/perfil.ttl#yo> , <http://evenroruro.com/perfil.ttl#yo> , < http://aidanhogan.com/perfil.ttl#yo > ;
+	foaf:interest wikidata:Q199657 , wikidata:Q31920, wikidata:Q1860;
+	ex:likesMovie wikidata:Q128518 , wikidata:Q218235, wikidata:Q106182.
+	
+<> a foaf:Document ;
+	foaf:name "Perfil FOAF de Guadalupe"@es;
+	foaf:primaryTopic <#yo> .
